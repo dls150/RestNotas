@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbNotaViewDlg" widgetVar="TbNotaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTbNotaTitle}">
+            <h:form id="TbNotaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbNotaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTbNotaLabel_idNote}"/>
+                        <h:outputText value="#{tbNotaController.selected.idNote}" title="#{bundle.ViewTbNotaTitle_idNote}"/>
+                        <h:outputText value="#{bundle.ViewTbNotaLabel_titulo}"/>
+                        <h:outputText value="#{tbNotaController.selected.titulo}" title="#{bundle.ViewTbNotaTitle_titulo}"/>
+                        <h:outputText value="#{bundle.ViewTbNotaLabel_descricao}"/>
+                        <h:outputText value="#{tbNotaController.selected.descricao}" title="#{bundle.ViewTbNotaTitle_descricao}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TbNotaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
