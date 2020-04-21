@@ -12,7 +12,10 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -102,5 +105,42 @@ public class NotasService extends AbstractFacade<TbNota> {
     @Produces(MediaType.APPLICATION_JSON)
     public List<TbNota> findByPartTitulo(@PathParam("partTitulo") String titulo) {
         return ejbFacade.findByPartTitulo(titulo);
+    }
+    
+    /**
+     * Serviço responsável por adicionar um registro utilizando método POST
+     * 
+     * @param entity
+     */
+    @POST
+    @Path("/add")
+    @Override
+    @Produces({MediaType.APPLICATION_JSON})
+    public void create (TbNota entity) {
+        super.create(entity);
+    }
+    
+    /**
+     * Serviço responsável por salvar um registro editado
+     * 
+     * @param entity
+     */
+    @PUT
+    @Path("/edit")
+    @Produces({MediaType.APPLICATION_JSON})
+    public void editNota (TbNota entity) {
+        super.edit(entity);
+    }
+    
+    /**
+     * Serviço responsável por remover um registro
+     * 
+     * @param id
+     */
+    @DELETE
+    @Path("/delete/{id}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public void remove (@PathParam("id") Integer id) {
+     super.remove(super.find(id));
     }
 }
